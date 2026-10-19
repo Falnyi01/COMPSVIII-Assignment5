@@ -1,0 +1,34 @@
+# Set version
+# Don't think I need to set this because it's giving me a warning, but adding it par the instructions 
+version: '3.8'
+
+# Define services with 2 services: backend and frontend
+services:
+  # Backend service
+  backend:
+    # Builds from the Dockerfile in the backend directory
+    build: ./backend
+    # Mapping to port 5000 on the host machine to port 5000 in the container
+    ports:
+      - "5000:5000"
+    # Creating volume for database persistence
+    volumes:
+      - ./task_data:/app/data
+
+  # Frontend service
+  frontend:
+    # Builds from the Dockerfile in the frontend directory
+    build: ./frontend
+    # Mapping to port 3000 on the host machine to port 3000 in the container
+    ports:
+      - "3000:3000"
+    # Depends on the backend service. Ensures backend is started before frontend
+    depends_on:
+      - backend
+    # Set environment variable for the backend API URL. This is used by the frontend to communicate with the backend.
+    environment:
+      VITE_API_URL=http://localhost:5000
+
+# Add volumes for database persistence.
+volumes:
+  task_data:
