@@ -21,13 +21,13 @@ services:
     build: ./frontend
     # Mapping to port 3000 on the host machine to port 3000 in the container
     ports:
-      - "3000:3000"
+      - "3000:80"
     # Depends on the backend service. Ensures backend is started before frontend
     depends_on:
       - backend
     # Set environment variable for the backend API URL. This is used by the frontend to communicate with the backend.
     environment:
-      VITE_API_URL=http://localhost:5000
+      - VITE_API_URL=http://localhost:5000
 
 # Add volumes for database persistence.
 volumes:
