@@ -7,11 +7,15 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+
 # Install dependencies
 RUN npm install
 
 # Copy the rest of the application code to the working directory
 COPY . .
+# Accept build argument 
+ARG VITE_API_URL 
+ENV VITE_API_URL=$VITE_API_URL
 
 # Build production application
 RUN npm run build
