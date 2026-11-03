@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Create a directory for SQLite database
-RUN mkdir -p ./db
+RUN mkdir -p ./app
 
 # Expose port 5000 for backend server
 EXPOSE 5000
