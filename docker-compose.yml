@@ -13,7 +13,7 @@ services:
       - "5000:5000"
     # Creating volume for database persistence
     volumes:
-      - ./task_data:/app/data
+      - ./task_data:/app/db
 
   # Frontend service
   frontend:
